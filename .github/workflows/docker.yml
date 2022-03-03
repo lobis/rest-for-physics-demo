@@ -15,8 +15,7 @@ on:
       target:
         required: true
         description: Name of the runner to build the image on (self-hosted, ubuntu-latest, ...)
-        default: self-hosted
-
+        default: ubuntu-latest
 env:
   IMAGE_NAME: lobis/rest-for-physics-demo
   VERSION_TAG: root-geant4-garfield_${{ github.event.inputs.BASE_IMAGE_VERSION }}-rest_-${{ github.event.inputs.REST_FOR_PHYSICS_VERSION }}
