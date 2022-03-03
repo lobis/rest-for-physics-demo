@@ -1,0 +1,53 @@
+name: Build and Publish Docker Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      BASE_IMAGE_VERSION:
+        description: "Docker tag for base image: ghcr.io/lobis/root-geant4-garfield"
+        required: true
+        default: "latest"
+      REST_FOR_PHYSICS_VERSION:
+        description: "REST-for-Physics Version (GitHub branch / tag / commit)"
+        required: true
+        default: "master"
+
+      target:
+        required: true
+        description: Name of the runner to build the image on (self-hosted, ubuntu-latest, ...)
+        default: self-hosted
+
+env:
+  IMAGE_NAME: lobis/rest-for-physics-demo
+  VERSION_TAG: root-geant4-garfield_${{ github.event.inputs.BASE_IMAGE_VERSION }}-rest_-${{ github.event.inputs.REST_FOR_PHYSICS_VERSION }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ${{ github.event.inputs.target }}
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to the GitHub Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CONTAINER_REGISTRY_GITHUB_TOKEN }}
+
+      - name: Build and Push image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          pull: true
+          build-args: |
+            BASE_IMAGE_VERSION=${{ github.event.inputs.BASE_IMAGE_VERSION }}
+            REST_FOR_PHYSICS_VERSION=${{ github.event.inputs.REST_FOR_PHYSICS_VERSION }}
+          tags: |
+            ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_TAG }}
+            ghcr.io/${{ env.IMAGE_NAME }}:latest
