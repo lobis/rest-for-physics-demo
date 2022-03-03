@@ -1,4 +1,4 @@
-ARG BASE_IMAGE_TAG=latest
+ARG BASE_IMAGE_TAG=cpp17_ROOT-v6-24-06_Geant4-v10.4.3_Garfield-4.0
 
 FROM ghcr.io/lobis/root-geant4-garfield-dev:${BASE_IMAGE_TAG}
 
