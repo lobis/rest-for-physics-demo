@@ -18,7 +18,7 @@ on:
         default: ubuntu-latest
 env:
   IMAGE_NAME: lobis/rest-for-physics-demo
-  VERSION_TAG: root-geant4-garfield_${{ github.event.inputs.BASE_IMAGE_VERSION }}-rest_${{ github.event.inputs.REST_FOR_PHYSICS_VERSION }}
+  VERSION_TAG: root-geant4-garfield_${{ github.event.inputs.BASE_IMAGE_VERSION }}-REST_${{ github.event.inputs.REST_FOR_PHYSICS_VERSION }}
 
 jobs:
   build-and-push-image:
@@ -50,3 +50,16 @@ jobs:
           tags: |
             ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_TAG }}
             ghcr.io/${{ env.IMAGE_NAME }}:latest
+
+      - name: Build and Push Binder image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: binder/Dockerfile
+          push: true
+          pull: true
+          build-args: |
+            BASE_IMAGE_VERSION=${{ env.VERSION_TAG }}
+          tags: |
+            ghcr.io/${{ env.IMAGE_NAME }}-binder:${{ env.VERSION_TAG }}
+            ghcr.io/${{ env.IMAGE_NAME }}-binder:latest
