@@ -11,7 +11,7 @@ ARG APPS_DIR=/usr/local
 ARG REST_FOR_PHYSICS_VERSION=master
 
 RUN git clone https://github.com/rest-for-physics/framework.git $APPS_DIR/rest-for-physics/source && \
-    cd $APPS_DIR/rest-for-physics/source && git checkout --hard ${REST_FOR_PHYSICS_VERSION} && \
+    cd $APPS_DIR/rest-for-physics/source && git reset --hard ${REST_FOR_PHYSICS_VERSION} && \
     mkdir -p $APPS_DIR/rest-for-physics/build && cd $APPS_DIR/rest-for-physics/build && \
     yes | python3 pull-submodules.py --clean && \
     cmake .. -DREST_WELCOME=OFF -DREST_GARFIELD=ON -DREST_G4=ON -DRESTLIB_DETECTOR=ON \
