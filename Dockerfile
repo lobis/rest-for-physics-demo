@@ -27,4 +27,6 @@ RUN echo "source $APPS_DIR/rest-for-physics/install/thisREST.sh" >> ~/.bashrc
 
 WORKDIR /
 
+COPY . ${HOME}
+
 CMD ["/bin/bash"]
