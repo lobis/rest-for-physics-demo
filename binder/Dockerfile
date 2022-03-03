@@ -19,7 +19,7 @@ RUN adduser --disabled-password \
     ${NB_USER}
 
 USER root
-RUN mv ${HOME}/* /home/${NB_USER} && chown -R ${NB_UID} ${HOME}
+RUN mv /home/root/* /home/${NB_USER}/ && chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
 CMD ["/bin/bash"]
