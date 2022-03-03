@@ -1,0 +1,4 @@
+Dockerfile
+.github/
+*build*/
+README.md
