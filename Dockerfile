@@ -1,6 +1,11 @@
 ARG BASE_IMAGE_TAG=latest
 
-FROM ghcr.io/lobis/root-geant4-garfield-dev:${BASE_IMAGE_TAG}}
+FROM ghcr.io/lobis/root-geant4-garfield-dev:${BASE_IMAGE_TAG}
+
+LABEL maintainer.name="Luis Obis"
+LABEL maintainer.email="luis.antonio.obis@gmail.com"
+
+LABEL org.opencontainers.image.source="https://github.com/lobis/rest-for-physics-demo"
 
 ARG APPS_DIR=/usr/local
 ARG REST_FOR_PHYSICS_VERSION=master
