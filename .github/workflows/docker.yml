@@ -9,7 +9,7 @@ on:
       BASE_IMAGE_VERSION:
         description: "Docker tag for base image: ghcr.io/lobis/root-geant4-garfield. Should not be ':latest' to comply with binder requirements"
         required: true
-        default: ":cpp17_ROOT-v6-24-06_Geant4-v10.4.3_Garfield-4.0"
+        default: "cpp17_ROOT-v6-24-06_Geant4-v10.4.3_Garfield-af4a1451"
       REST_FOR_PHYSICS_VERSION:
         description: "REST-for-Physics Version (GitHub branch / tag / commit)"
         required: true
