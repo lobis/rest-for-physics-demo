@@ -15,3 +15,7 @@ You can also run the notebook server locally via:
 ```
 docker run -it --rm -p 8888:8888 ghcr.io/lobis/rest-for-physics-demo:latest jupyter-lab --ip=0.0.0.0 --port=8888
 ```
+
+## Development
+
+docker run -it --rm --name demo -v ${PWD}:/demo ghcr.io/lobis/rest-for-physics-demo:latest
