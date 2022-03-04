@@ -1,4 +1,4 @@
-ARG BASE_IMAGE_TAG=cpp17_ROOT-v6-24-06_Geant4-v10.4.3_Garfield-4.0
+ARG BASE_IMAGE_TAG=cpp17_ROOT-v6-26-00_Geant4-v10.4.3_Garfield-af4a1451
 
 FROM ghcr.io/lobis/root-geant4-garfield:${BASE_IMAGE_TAG}
 
@@ -43,7 +43,7 @@ RUN adduser --disabled-password \
 
 COPY . ${HOME}
 USER root
-RUN mv /root/* /home/${NB_USER}/ && chown -R ${NB_UID} ${HOME}
+RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
 CMD ["/bin/bash"]
