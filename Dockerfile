@@ -28,23 +28,4 @@ RUN echo "source $APPS_DIR/rest-for-physics/install/thisREST.sh" >> ~/.bashrc
 
 WORKDIR /
 
-RUN pip3 -q install pip --upgrade && \
-    pip3 install --no-cache-dir notebook jupyterhub jupyterlab_code_formatter black isort autopep8 uproot awkward metakernel
-
-ARG NB_USER=user
-ARG NB_UID=1000
-ENV USER ${NB_USER}
-ENV NB_UID ${NB_UID}
-ENV HOME /home/${NB_USER}
-
-RUN adduser --disabled-password \
-    --gecos "Default user" \
-    --uid ${NB_UID} \
-    ${NB_USER}
-
-COPY . ${HOME}
-USER root
-RUN chown -R ${NB_UID} ${HOME}
-USER ${NB_USER}
-
 CMD ["/bin/bash"]
