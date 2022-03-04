@@ -1,9 +1,6 @@
 name: Build and Publish Docker Image
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
-
   workflow_dispatch:
     inputs:
       BASE_IMAGE_VERSION:
@@ -53,3 +50,16 @@ jobs:
           tags: |
             ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_TAG }}
             ghcr.io/${{ env.IMAGE_NAME }}:latest
+            
+      - name: Build and Push Notebook image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: .binder/Dockerfile
+          push: true
+          pull: true
+          build-args: |
+            BASE_IMAGE_VERSION=${{ env.VERSION_TAG }}
+          tags: |
+            ghcr.io/${{ env.IMAGE_NAME }}-notebook:${{ env.VERSION_TAG }}
+            ghcr.io/${{ env.IMAGE_NAME }}-notebook:latest
