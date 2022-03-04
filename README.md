@@ -4,4 +4,8 @@
 
 # [REST-for-Physics](https://github.com/rest-for-physics/framework) demo
 
-Work in progress.
+## How to run
+
+```
+docker run -it --rm -p 8888:8888 ghcr.io/lobis/rest-for-physics-demo:latest jupyter-lab --ip=0.0.0.0 --port=8888 --allow-root
+```
