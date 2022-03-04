@@ -28,7 +28,8 @@ RUN echo "source $APPS_DIR/rest-for-physics/install/thisREST.sh" >> ~/.bashrc
 
 WORKDIR /
 
-RUN pip install --no-cache-dir notebook jupyterhub metakernel
+RUN pip3 -q install pip --upgrade && \
+    pip3 install --no-cache-dir notebook jupyterhub jupyterlab_code_formatter black isort autopep8 uproot awkward metakernel
 
 ARG NB_USER=user
 ARG NB_UID=1000
