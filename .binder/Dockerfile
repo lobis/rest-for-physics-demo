@@ -1,4 +1,4 @@
-ARG BASE_IMAGE_TAG=cpp17_ROOT-v6-26-00_Geant4-v10.4.3_Garfield-af4a1451-REST_master
+ARG BASE_IMAGE_TAG=cpp17_ROOT-v6-26-00_Geant4-v10.4.3_Garfield-af4a1451_REST-master
 
 FROM ghcr.io/lobis/rest-for-physics-demo:${BASE_IMAGE_TAG}
 

@@ -21,7 +21,7 @@ on:
         default: ubuntu-latest
 env:
   IMAGE_NAME: lobis/rest-for-physics-demo
-  VERSION_TAG: root-geant4-garfield_${{ github.event.inputs.BASE_IMAGE_VERSION }}-REST_${{ github.event.inputs.REST_FOR_PHYSICS_VERSION }}
+  VERSION_TAG: root-geant4-garfield_${{ github.event.inputs.BASE_IMAGE_VERSION }}_REST-${{ github.event.inputs.REST_FOR_PHYSICS_VERSION }}
 
 jobs:
   build-and-push-image:
