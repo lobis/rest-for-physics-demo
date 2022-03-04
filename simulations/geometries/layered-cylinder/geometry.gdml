@@ -8,6 +8,8 @@
         <constant name="layer1Thickness" value="20"/>
         <constant name="layer2Thickness" value="100"/>
         <constant name="layer3Thickness" value="100"/>
+
+        <constant name="2PI" value="6.283185307179586"/>
     </define>
     <materials>
         <isotope Z="29.0" N="63" name="Cu63">
@@ -103,11 +105,16 @@
         </material>
     </materials>
     <solids>
-        <tube name="sensitiveSolid" rmin="0" rmax="detectorSizeDiameter * 0.5" z="detectorSizeZ" lunit="mm"/>
+        <tube name="sensitiveSolid" lunit="mm"
+              rmin="0" rmax="detectorSizeDiameter * 0.5" z="detectorSizeZ"
+              startphi="0.0" deltaphi="6.283185307179586"
+        />
 
         <tube name="layer1SolidAux" lunit="mm"
               rmin="0" rmax="detectorSizeDiameter * 0.5 + layer1Thickness"
-              z="detectorSizeZ + layer1Thickness"/>
+              z="detectorSizeZ + layer1Thickness"
+              startphi="0.0" deltaphi="6.283185307179586"
+        />
 
         <subtraction name="layer1Solid">
             <first ref="layer1SolidAux"/>
@@ -116,7 +123,9 @@
 
         <tube name="layer2SolidAux" lunit="mm"
               rmin="0" rmax="detectorSizeDiameter * 0.5 + layer1Thickness + layer2Thickness"
-              z="detectorSizeZ + layer1Thickness + layer2Thickness"/>
+              z="detectorSizeZ + layer1Thickness + layer2Thickness"
+              startphi="0.0" deltaphi="6.283185307179586"
+        />
 
         <subtraction name="layer2Solid">
             <first ref="layer2SolidAux"/>
@@ -125,7 +134,9 @@
 
         <tube name="layer3SolidAux" lunit="mm"
               rmin="0" rmax="detectorSizeDiameter * 0.5 + layer1Thickness + layer2Thickness + layer3Thickness"
-              z="detectorSizeZ + layer1Thickness + layer2Thickness + layer3Thickness"/>
+              z="detectorSizeZ + layer1Thickness + layer2Thickness + layer3Thickness"
+              startphi="0.0" deltaphi="6.283185307179586"
+        />
 
         <subtraction name="layer3Solid">
             <first ref="layer3SolidAux"/>
