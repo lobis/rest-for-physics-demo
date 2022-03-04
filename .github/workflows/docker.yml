@@ -1,12 +1,15 @@
 name: Build and Publish Docker Image
 
 on:
+  schedule:
+    - cron: '0 0 * * *'
+
   workflow_dispatch:
     inputs:
       BASE_IMAGE_VERSION:
-        description: "Docker tag for base image: ghcr.io/lobis/root-geant4-garfield. Should not be 'latest' to comply with binder requirements"
+        description: "Docker tag for base image: ghcr.io/lobis/root-geant4-garfield. Should not be ':latest' to comply with binder requirements"
         required: true
-        default: "cpp17_ROOT-v6-24-06_Geant4-v10.4.3_Garfield-4.0"
+        default: ":cpp17_ROOT-v6-24-06_Geant4-v10.4.3_Garfield-4.0"
       REST_FOR_PHYSICS_VERSION:
         description: "REST-for-Physics Version (GitHub branch / tag / commit)"
         required: true
@@ -50,16 +53,3 @@ jobs:
           tags: |
             ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION_TAG }}
             ghcr.io/${{ env.IMAGE_NAME }}:latest
-
-      - name: Build and Push Binder image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: binder/Dockerfile
-          push: true
-          pull: true
-          build-args: |
-            BASE_IMAGE_VERSION=${{ env.VERSION_TAG }}
-          tags: |
-            ghcr.io/${{ env.IMAGE_NAME }}-binder:${{ env.VERSION_TAG }}
-            ghcr.io/${{ env.IMAGE_NAME }}-binder:latest
