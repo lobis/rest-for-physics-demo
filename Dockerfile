@@ -19,6 +19,7 @@ RUN git clone https://github.com/rest-for-physics/framework.git $APPS_DIR/rest-f
     make -j$(nproc) install && \
     rm -rf $APPS_DIR/rest-for-physics/build $APPS_DIR/rest-for-physics/source
 
+ENV REST_PATH $APPS_DIR/rest-for-physics/install
 ENV PATH $APPS_DIR/rest-for-physics/install/bin:$PATH
 ENV LD_LIBRARY_PATH $APPS_DIR/rest-for-physics/install/lib:$LD_LIBRARY_PATH
 ENV ROOT_INCLUDE_PATH $APPS_DIR/rest-for-physics/install/include:$ROOT_INCLUDE_PATH
